@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "App List Schema",
+    "description": "Schema for a list of apps with their metadata.",
+    "type": "object",
+    "required": ["name", "description", "type", "apps"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the app list."
+      },
+      "description": {
+        "type": "string",
+        "description": "A brief description of the app list."
+      },
+      "type": {
+        "type": "string",
+        "enum": ["list"],
+        "description": "The type of the collection, which must be 'list'."
+      },
+      "apps": {
+        "type": "array",
+        "description": "A list of apps with their metadata.",
+        "items": {
+          "type": "object",
+          "required": ["name", "description", "url"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the app."
+            },
+            "description": {
+              "type": "string",
+              "description": "A brief description of the app."
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "The URL where the app can be accessed."
+            }
+          }
+        }
+      }
+    }
+  }
+  

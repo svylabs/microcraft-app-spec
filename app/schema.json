@@ -1,0 +1,180 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "App Definition Schema",
+    "description": "Schema for defining a frontend app with components, networks, contracts, and WASM libraries.",
+    "type": "object",
+    "required": ["name", "description", "components", "networks", "contracts", "libs"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the app."
+      },
+      "description": {
+        "type": "string",
+        "description": "A brief description of the app."
+      },
+      "components": {
+        "type": "array",
+        "description": "List of components in the app.",
+        "items": {
+          "type": "object",
+          "required": ["id", "type", "name", "label", "placement"],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "A unique identifier for the component."
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "text",
+                "number",
+                "description",
+                "json",
+                "file",
+                "slider",
+                "dropdown",
+                "radio",
+                "swap",
+                "graph",
+                "link"
+              ],
+              "description": "The type of the component."
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the component."
+            },
+            "label": {
+              "type": "string",
+              "description": "The label displayed for the component."
+            },
+            "placement": {
+              "type": "string",
+              "enum": ["input", "output", "action"],
+              "description": "Defines where the component is placed (input, output, or action)."
+            },
+            "events": {
+              "type": "array",
+              "description": "List of events associated with the component.",
+              "items": {
+                "type": "object",
+                "required": ["type", "code"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["onChange", "onLoad"],
+                    "description": "The type of event (onChange or onLoad)."
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "JavaScript code to execute when the event is triggered."
+                  }
+                }
+              }
+            },
+            "code": {
+              "type": "string",
+              "description": "JavaScript code for action components. Only applicable if placement is 'action'."
+            },
+            "config": {
+              "type": "object",
+              "description": "Configuration for the component.",
+              "properties": {
+                "styles": {
+                  "type": "object",
+                  "description": "CSS-like styles applied to the component.",
+                  "properties": {
+                    "color": { "type": "string", "description": "Text color" },
+                    "backgroundColor": { "type": "string", "description": "Background color" },
+                    "fontSize": { "type": "string", "description": "Font size" },
+                    "padding": { "type": "string", "description": "Padding" },
+                    "margin": { "type": "string", "description": "Margin" }
+                  },
+                  "additionalProperties": false
+                },
+                "template": {
+                  "type": "string",
+                  "description": "HTML or text template. Applicable only to the 'description' component type."
+                },
+                "min": {
+                  "type": "number",
+                  "description": "Minimum value for slider components. Applicable to 'slider'."
+                },
+                "max": {
+                  "type": "number",
+                  "description": "Maximum value for slider components. Applicable to 'slider'."
+                },
+                "step": {
+                  "type": "number",
+                  "description": "Step value for slider components. Applicable to 'slider'."
+                },
+                "options": {
+                  "type": "array",
+                  "description": "Options for dropdown or radio components. Applicable to 'dropdown' and 'radio'.",
+                  "items": { "type": "string" }
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "networks": {
+        "type": "array",
+        "description": "List of EVM-based networks the app will connect to.",
+        "items": {
+          "type": "object",
+          "required": ["name", "type", "config"],
+          "properties": {
+            "name": { "type": "string", "description": "The name of the network." },
+            "type": { "type": "string", "enum": ["evm"], "description": "The type of network." },
+            "config": {
+              "type": "object",
+              "required": ["chainId", "rpcUrl", "explorerUrl"],
+              "properties": {
+                "chainId": { "type": "integer", "description": "The chain ID of the network." },
+                "rpcUrl": { "type": "string", "description": "The RPC URL for the network." },
+                "explorerUrl": { "type": "string", "description": "The block explorer URL for the network." }
+              }
+            }
+          }
+        }
+      },
+      "contracts": {
+        "type": "array",
+        "description": "List of smart contract ABIs and addresses for various networks.",
+        "items": {
+          "type": "object",
+          "required": ["name", "abi", "addresses"],
+          "properties": {
+            "name": { "type": "string", "description": "The name of the smart contract." },
+            "abi": {
+              "type": "array",
+              "description": "The ABI (Application Binary Interface) of the smart contract.",
+              "items": { "type": "object", "description": "A single ABI entry." }
+            },
+            "addresses": {
+              "type": "object",
+              "description": "Mapping of chain IDs to contract addresses.",
+              "additionalProperties": { "type": "string", "description": "The contract address." }
+            }
+          }
+        }
+      },
+      "libs": {
+        "type": "array",
+        "description": "List of WASM libraries used in the app.",
+        "items": {
+          "type": "object",
+          "required": ["name", "type", "url"],
+          "properties": {
+            "name": { "type": "string", "description": "The name of the WASM library." },
+            "type": { "type": "string", "enum": ["wasm"], "description": "The type of the library." },
+            "url": { "type": "string", "format": "uri", "description": "The URL to load the .wasm file." }
+          }
+        }
+      }
+    }
+  }
+  

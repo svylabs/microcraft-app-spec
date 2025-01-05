@@ -1,0 +1,23 @@
+{
+    "name": "My DApp Collection",
+    "description": "A list of decentralized applications.",
+    "type": "list",
+    "apps": [
+      {
+        "name": "My DApp",
+        "description": "An example decentralized application.",
+        "url": "https://example.com/my-dapp"
+      },
+      {
+        "name": "Crypto Dashboard",
+        "description": "A dashboard for tracking cryptocurrency prices.",
+        "url": "https://example.com/crypto-dashboard"
+      },
+      {
+        "name": "NFT Marketplace",
+        "description": "A marketplace for buying and selling NFTs.",
+        "url": "https://example.com/nft-marketplace"
+      }
+    ]
+}
+  

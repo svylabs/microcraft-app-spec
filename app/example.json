@@ -1,0 +1,85 @@
+{
+    "name": "My DApp",
+    "description": "A decentralized application example.",
+    "components": [
+      {
+        "id": "input1",
+        "type": "input",
+        "name": "username",
+        "label": "Username",
+        "placement": "input",
+        "events": [
+          {
+            "type": "onChange",
+            "code": "console.log('Username changed');"
+          }
+        ],
+        "config": {
+          "styles": {
+            "color": "#333",
+            "backgroundColor": "#f9f9f9",
+            "fontSize": "16px",
+            "padding": "10px",
+            "margin": "5px"
+          },
+          "placeholder": "Enter your username"
+        }
+      },
+      {
+        "id": "btn1",
+        "type": "button",
+        "name": "submitButton",
+        "label": "Submit",
+        "placement": "action",
+        "code": "function submitForm() { console.log('Form submitted'); } submitForm();",
+        "config": {
+          "styles": {
+            "color": "#fff",
+            "backgroundColor": "#007bff",
+            "fontSize": "14px",
+            "padding": "12px",
+            "margin": "10px"
+          }
+        }
+      }
+    ],
+    "networks": [
+      {
+        "name": "Ethereum Mainnet",
+        "type": "evm",
+        "config": {
+          "chainId": 1,
+          "rpcUrl": "https://mainnet.infura.io/v3/YOUR-PROJECT-ID",
+          "explorerUrl": "https://etherscan.io"
+        }
+      }
+    ],
+    "contracts": [
+      {
+        "name": "MyToken",
+        "abi": [
+          {
+            "type": "function",
+            "name": "balanceOf",
+            "inputs": [
+              { "name": "owner", "type": "address" }
+            ],
+            "outputs": [
+              { "name": "balance", "type": "uint256" }
+            ]
+          }
+        ],
+        "addresses": {
+          "1": "0x1234567890abcdef1234567890abcdef12345678"
+        }
+      }
+    ],
+    "libs": [
+      {
+        "name": "math_library",
+        "type": "wasm",
+        "url": "https://example.com/wasm/math_library.wasm"
+      }
+    ]
+  }
+  

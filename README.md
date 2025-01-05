@@ -2,7 +2,7 @@
 
 [Microcraft](https://github.com/svylabs/microcraft) is a micro-frontend framework for web3, that allows frontends to be configured in json format, and the supporting runtimes can load the jsons dynamically to render the configured app.
 
-This repo contains the JSON spec to define the frontend application and application collection as json.
+This repo contains the JSON spec for Apps and App Lists.
 
 ## App
 

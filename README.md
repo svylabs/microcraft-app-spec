@@ -15,4 +15,4 @@
 # Supported Runtime implementations
 
 1. [Microcraft](https://app.microcraft.dev)
-         - You can enter `https://github.com/svylabs/stablebase/tree/main/frontends` in the text box and click load app.
+         - You can enter `https://github.com/svylabs/stablebase/tree/main/frontends` in the text box and click load app to check how it works.
